@@ -1,0 +1,44 @@
+$bar-color: rgba(244, 67, 54, 1);
+$wrap-z-index: 10000;
+$trans-time: 350ms;
+$trans-time-delay: 500ms;
+
+.loadbar-wrap {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $wrap-z-index;
+    width: 100%;
+    transition: opacity $trans-time ease-out $trans-time-delay;
+
+    .loadbar-spinner {
+        top: 10px;
+        left: 10px;
+        width: 14px;
+        height: 14px;
+        border: solid $bar-color;
+        border-width: 0 2px 2px 0;
+        border-radius: 50%;
+        position: fixed;
+        animation: loadbar-spinner $trans-time linear infinite;
+    }
+
+    .loadbar-progress {
+        width: 100%;
+        height: 3px;
+        background: $bar-color;
+        border-radius: 0 1px 1px 0;
+        transition: width $trans-time ease-out;
+    }
+}
+
+@keyframes loadbar-spinner {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
