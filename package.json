@@ -3,17 +3,27 @@
   "version": "0.1.0",
   "private": false,
   "author": "John Bernardo",
+  "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist/"
   ],
+  "engines": {
+    "node": "^6.0.0"
+  },
   "dependencies": {
     "react": ">=15",
     "react-dom": ">=15"
   },
   "scripts": {
+    "precommit": "./pre",
+    "prepush": "./pre",
+    "lintAll": "yarn tslint . && yarn eslint .",
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "clean": "rm -rf build dist",
+    "dist": "yarn clean && yarn build",
+    "build:dev": "webpack --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
@@ -23,13 +33,28 @@
     "@baristalabs/react-scripts-ts": "2.9.5",
     "@storybook/addon-actions": "^3.3.3",
     "@storybook/addon-links": "^3.3.3",
+    "@storybook/addons": "^3.3.3",
     "@storybook/react": "^3.3.3",
     "@types/jest": "^22.0.0",
-    "@types/node": "^8.5.2",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
     "@types/storybook__react": "^3.0.5",
+    "autoprefixer": "^7.2.4",
     "awesome-typescript-loader": "^3.4.1",
-    "tslint-eslint-rules": "^4.1.1"
+    "babel-eslint": "^8.1.2",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.14.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-react": "^7.5.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "husky": "^0.14.3",
+    "prop-types": "^15.6.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.6.2"
   }
 }

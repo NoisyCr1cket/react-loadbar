@@ -6,9 +6,6 @@ export class LoadBar extends React.Component<Readonly<LoadBarProps>, Readonly<Lo
     state = { wasHidden: true }
 
     componentWillReceiveProps(nextProps: LoadBarProps) {
-        // Set opacity to 1 when percent > 1
-        // Set opacity to 0 when percent === 1
-        // Set opacity to 0 when percent === 100
         const { percent } = this.props
         if (nextProps.percent > percent) {
             this.setState({ wasHidden: percent === 1 })
