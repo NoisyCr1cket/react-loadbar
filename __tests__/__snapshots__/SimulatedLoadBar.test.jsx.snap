@@ -1,5 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SimulatedLoadBar barStyle 1`] = `
+<div
+  className="loadbar-wrap"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <div
+    className="loadbar-spinner"
+    style={Object {}}
+  />
+  <div
+    className="loadbar-progress"
+    style={
+      Object {
+        "fontSize": "4rem",
+        "width": "1%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimulatedLoadBar onVisibilityChange 1`] = `
+<div
+  className="loadbar-wrap"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <div
+    className="loadbar-spinner"
+    style={Object {}}
+  />
+  <div
+    className="loadbar-progress"
+    style={
+      Object {
+        "width": "1%",
+      }
+    }
+  />
+</div>
+`;
+
 exports[`SimulatedLoadBar renders properly 1`] = `
 <div
   className="loadbar-wrap"
@@ -13,6 +62,78 @@ exports[`SimulatedLoadBar renders properly 1`] = `
     className="loadbar-spinner"
     style={Object {}}
   />
+  <div
+    className="loadbar-progress"
+    style={
+      Object {
+        "width": "1%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimulatedLoadBar renders properly with initial isLoading=false 1`] = `
+<div
+  className="loadbar-wrap"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <div
+    className="loadbar-spinner"
+    style={Object {}}
+  />
+  <div
+    className="loadbar-progress"
+    style={
+      Object {
+        "width": "1%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimulatedLoadBar spinnerStyle 1`] = `
+<div
+  className="loadbar-wrap"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
+  <div
+    className="loadbar-spinner"
+    style={
+      Object {
+        "backgroundColor": "pink",
+      }
+    }
+  />
+  <div
+    className="loadbar-progress"
+    style={
+      Object {
+        "width": "1%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimulatedLoadBar without spinner 1`] = `
+<div
+  className="loadbar-wrap"
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+>
   <div
     className="loadbar-progress"
     style={

@@ -27,4 +27,6 @@ export type State = {
     tickIntervalMs: number
     // How much to update the percent by per tick
     step: number
+    // Whether or not the loadbar is in a loading state
+    isLoading: boolean
 }

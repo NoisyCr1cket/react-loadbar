@@ -8,6 +8,9 @@ const TRANS_TIME_DELAY_MS = 850
 // The fastest interval possible is usually around 15ms in most engines. We set a floor of
 // 20ms since updates can't realistically be faster than that
 const MIN_TICK_INTERVAL = 20
+// Maximum percent (and width) of the bar before pausing indefinitely and until the
+// isLoading property is set the false
+const MAX_PCT = 95
 
 const defaultProps = {
     // noop
@@ -37,35 +40,36 @@ export class SimulatedLoadBar extends
         const tickIntervalMs = Math.max(MIN_TICK_INTERVAL, timeMs / numTicks)
         // Recalc in case we floored at MIN_TICK_INTERVAL
         numTicks = timeMs / tickIntervalMs
-        const newState = { tickIntervalMs, step: 100 / numTicks }
+        const newState = { tickIntervalMs, step: MAX_PCT / numTicks }
         const isLoading = typeof attrs.isLoading === 'boolean' ? attrs.isLoading : defaultProps.isLoading
 
         if (this.state) {
             this.setState(newState)
         } else {
-            this.state = { ...newState, percent: 1 }
+            this.state = { ...newState, percent: 1, isLoading }
         }
 
         clearInterval(this._timeout)
 
         if (isLoading && tickIntervalMs) {
             const cb = () => {
-                const percent = Math.min(95, this.state.percent + this.state.step)
+                const percent = Math.min(MAX_PCT, this.state.percent + this.state.step)
+                this.setState({ percent })
+
                 if (attrs.onPercentChange) {
                     attrs.onPercentChange(percent)
                 }
 
-                this.setState({ percent })
                 // TODO Make this configurable
-                if (percent === 95) {
+                if (percent === MAX_PCT) {
                     clearInterval(this._timeout)
                 }
             }
 
             this._timeout = window.setInterval(cb, this.state.tickIntervalMs)
-        } else if (!isLoading && this.props.isLoading) {
+        } else if (!isLoading && this.state.isLoading) {
             // Finish up
-            this.setState({ percent: 100 }, () => {
+            this.setState({ percent: 100, isLoading }, () => {
                 const cb = () => this.setState({ percent: 1 })
                 setTimeout(cb, TRANS_TIME_DELAY_MS)
             })
