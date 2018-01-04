@@ -7,12 +7,13 @@ export default class AnimatingLoadBar extends React.Component {
         noLoop: PropTypes.bool,
         step: PropTypes.number,
         hideAfterTicks: PropTypes.number,
-        onVisibilityChange: PropTypes.bool
+        onVisibilityChange: PropTypes.func
     }
 
     state = { percent: 1, visible: true }
     _timeout = 0
     _timeout2 = 0
+    _timeout3 = 0
     _tickMs = 500
 
     componentDidMount() {
@@ -30,7 +31,7 @@ export default class AnimatingLoadBar extends React.Component {
                     clearTimeout(this._timeout2)
                     if (!this.props.noLoop) {
                         // Loop
-                        setTimeout(() => {
+                        this._timeout3 = setTimeout(() => {
                             this.setState({ percent: 1 })
                             this.componentDidMount()
                         }, 1500)
@@ -43,6 +44,7 @@ export default class AnimatingLoadBar extends React.Component {
     componentWillUnmount() {
         clearTimeout(this._timeout)
         clearTimeout(this._timeout2)
+        clearTimeout(this._timeout3)
     }
 
     render() {

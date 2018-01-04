@@ -25,7 +25,9 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>jestSetup.js",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "collectCoverageFrom": ["dist/*.js"],
+    "collectCoverageFrom": [
+      "dist/*.js"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

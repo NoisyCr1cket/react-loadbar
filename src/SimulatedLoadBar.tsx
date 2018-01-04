@@ -54,7 +54,7 @@ export class SimulatedLoadBar extends
         if (isLoading && tickIntervalMs) {
             const cb = () => {
                 const percent = Math.min(MAX_PCT, this.state.percent + this.state.step)
-                this.setState({ percent })
+                this.setState({ percent, isLoading })
 
                 if (attrs.onPercentChange) {
                     attrs.onPercentChange(percent)
