@@ -11,6 +11,7 @@
     "bar",
     "spinner",
     "bootstrap",
+    "youtube",
     "material",
     "dom"
   ],
@@ -21,17 +22,26 @@
   "dependencies": {
     "react": ">=15"
   },
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "scripts": {
     "precommit": "./pre",
     "prepush": "./pre",
     "lintAll": "yarn tslint . && yarn eslint .",
-    "start": "react-scripts-ts start",
     "clean": "rm -rf build dist",
     "dist": "yarn clean && yarn build",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "test": "yarn build && jest test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -47,15 +57,21 @@
     "autoprefixer": "^7.2.4",
     "awesome-typescript-loader": "^3.4.1",
     "babel-eslint": "^8.1.2",
+    "babel-jest": "^22.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
+    "enzyme": "^3.3.0",
     "eslint": "^4.14.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "husky": "^0.14.3",
+    "jest": "^22.0.4",
     "prop-types": "^15.6.0",
     "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "tslint": "^5.8.0",

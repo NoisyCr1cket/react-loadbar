@@ -1,0 +1,9 @@
+{
+    "globals": {
+        "test": true,
+        "expect": true
+    },
+    "rules": {
+        "react/jsx-no-bind": 0
+    }
+}
