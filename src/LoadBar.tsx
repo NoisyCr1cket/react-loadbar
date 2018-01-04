@@ -1,56 +1,84 @@
 import * as React from 'react'
 import Spinner from './Spinner'
 import './styles.scss'
+import { Props } from './types/LoadBar.d'
 
-export class LoadBar extends React.Component<Readonly<LoadBarProps>, Readonly<LoadBarState>> {
+const inRange = (percent: number) => percent > 1 && percent < 100
 
-    constructor(props: LoadBarProps) {
+enum BarState { Visible = 1, Hidden = 2 }
+
+type State = {
+    prevBarState: BarState
+    barState: BarState
+    percent: number
+}
+
+export class LoadBar extends React.Component<Readonly<Props>, Readonly<State>> {
+    constructor(props: Props) {
         super(props)
         this.componentWillReceiveProps(props)
     }
 
-    componentWillReceiveProps(nextProps: LoadBarProps) {
-        const { visible } = this.props
-        let { wasHidden, percent } = this.state || { wasHidden: true, percent: 1 }
+    componentWillReceiveProps(nextProps: Props) {
+        const { barState = BarState.Hidden } = this.state || {}
+        const isValidPercent = inRange(nextProps.percent)
 
-        if (nextProps.percent > percent) {
-            wasHidden = percent === 1
+        let newPercent = nextProps.percent || 1
+        let newBarState = barState
+
+        switch (barState) {
+            case BarState.Hidden:
+                if (isValidPercent) {
+                    newBarState = BarState.Visible
+                } else {
+                    newPercent = 1
+                }
+                break
+            case BarState.Visible:
+                if (!isValidPercent) {
+                    newPercent = Math.max(1, Math.min(100, nextProps.percent))
+                    newBarState = BarState.Hidden
+                }
+                break
+            default:
+                throw new Error(`Unknown BarState: ${barState}`)
         }
 
-        // If the bar was visible and we get a request from upstream to hide it (visible=false),
-        // then we trigger the complete animation
-        if (!wasHidden && visible && !nextProps.visible) {
-            percent = 100
+        if (!this.state) {
+            this.state = { barState: newBarState, prevBarState: barState, percent: newPercent }
         } else {
-            percent = nextProps.percent
-        }
-
-        if (this.state) {
-            this.setState({ wasHidden, percent })
-        } else {
-            this.state = { wasHidden, percent }
+            this.setState({ barState: newBarState, prevBarState: barState, percent: newPercent })
         }
     }
 
     render() {
         const {
-            showSpinner,
             barStyle,
-            visible = true,
+            onVisibilityChange,
+            showSpinner = true,
             spinnerStyle = {},
         } = this.props
 
-        const { percent, wasHidden } = this.state
+        const { percent, barState, prevBarState } = this.state
+        const isVisible = barState === BarState.Visible
+        const wrapStyle: { opacity: number, transition?: string } = { opacity: !isVisible ? 0 : 1 }
 
-        const newPercent = Math.max(1, Math.min(100, percent))
-        const wrapStyle: { opacity: number, transition?: string } = {
-            opacity: !visible || newPercent === 1 || newPercent === 100 ? 0 : 1
-        }
-
-        if (wasHidden) {
+        if (isVisible && prevBarState === BarState.Hidden) {
             // No need for transition if we're going from hidden -> visible
             // Only need it for visible -> hidden
             wrapStyle.transition = 'none'
+        }
+
+        console.info({ isVisible, prevBarState, percent, wrapStyle })
+
+        if (onVisibilityChange) {
+            if (prevBarState === BarState.Hidden && isVisible) {
+                // hidden -> visible
+                onVisibilityChange(true)
+            } else if (prevBarState === BarState.Visible && !isVisible) {
+                // visible -> hidden
+                onVisibilityChange(false)
+            }
         }
 
         return (
