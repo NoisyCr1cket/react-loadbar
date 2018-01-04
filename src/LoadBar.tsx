@@ -44,6 +44,9 @@ export class LoadBar extends React.Component<Readonly<Props>, Readonly<State>> {
                 throw new Error(`Unknown BarState: ${barState}`)
         }
 
+        // Round off
+        newPercent = +newPercent.toFixed(2)
+
         if (!this.state) {
             this.state = { barState: newBarState, prevBarState: barState, percent: newPercent }
         } else {
@@ -69,7 +72,7 @@ export class LoadBar extends React.Component<Readonly<Props>, Readonly<State>> {
             wrapStyle.transition = 'none'
         }
 
-        console.info({ isVisible, prevBarState, percent, wrapStyle })
+        // console.info({ isVisible, prevBarState, percent, wrapStyle })
 
         if (onVisibilityChange) {
             if (prevBarState === BarState.Hidden && isVisible) {
