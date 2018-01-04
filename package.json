@@ -8,9 +8,6 @@
   "files": [
     "dist/"
   ],
-  "engines": {
-    "node": "^6.0.0"
-  },
   "dependencies": {
     "react": ">=15",
     "react-dom": ">=15"
