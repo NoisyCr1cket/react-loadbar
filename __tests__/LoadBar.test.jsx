@@ -1,5 +1,6 @@
 import React from 'react'
 import { LoadBar } from '../dist/index'
+import { shallow } from 'enzyme'
 import renderer from 'react-test-renderer'
 
 test('LoadBar renders properly', () => {
@@ -9,6 +10,10 @@ test('LoadBar renders properly', () => {
 
     const tree = cmpt.toJSON()
     expect(tree).toMatchSnapshot()
+
+    const wrapper = shallow(<LoadBar />)
+    expect(wrapper.children()).toHaveLength(2)
+    expect(wrapper.childAt(0).render().hasClass('loadbar-spinner')).toBeTruthy()
 })
 
 test('LoadBar renders without spinner', () => {
@@ -18,38 +23,54 @@ test('LoadBar renders without spinner', () => {
 
     const tree = cmpt.toJSON()
     expect(tree).toMatchSnapshot()
+
+    const wrapper = shallow(<LoadBar showSpinner={false} />)
+    expect(wrapper.children()).toHaveLength(1)
+    expect(wrapper.childAt(0).render().hasClass('loadbar-spinner')).toBeFalsy()
+})
+
+test('LoadBar with barStyle', () => {
+    const cmpt = renderer.create(
+        <LoadBar barStyle={{ fontSize: '4rem' }} />
+    )
+
+    const tree = cmpt.toJSON()
+    expect(tree).toMatchSnapshot()
+})
+
+test('LoadBar with spinnerStyle', () => {
+    const cmpt = renderer.create(
+        <LoadBar spinnerStyle={{ backgroundColor: 'tomato' }} />
+    )
+
+    const tree = cmpt.toJSON()
+    expect(tree).toMatchSnapshot()
 })
 
 test('LoadBar calls onVisibilityChange', () => {
     let visible = false
     const onVisChange = isVisible => { visible = isVisible }
+    const cmpt = shallow(<LoadBar onVisibilityChange={onVisChange} />)
 
-    class StateChanger extends React.Component {
-        constructor(props) {
-            super(props)
-            this.state = { percent: 1 }
-        }
-        updateState(state) {
-            this.setState(state)
-        }
-        render() {
-            return (
-                <LoadBar percent={this.state.percent} onVisibilityChange={onVisChange} />
-            )
-        }
-    }
-
-    const cmpt = renderer.create(<StateChanger />)
-    // TODO Assert hidden
-
+    let wrap = cmpt.get(0)
     expect(visible).toBe(false)
-    cmpt.getInstance().updateState({ percent: 2 })
-    // TODO Assert visible
+    expect(wrap.props.className).toBe('loadbar-wrap')
+    expect(wrap.props.style.opacity).toBe(0)
+    cmpt.setProps({ percent: 2 })
 
+    wrap = cmpt.get(0)
     expect(visible).toBe(true)
-    cmpt.getInstance().updateState({ percent: 99 })
-    expect(visible).toBe(false)
-    cmpt.getInstance().updateState({ percent: 100 })
+    expect(wrap.props.style.opacity).toBe(1)
+    expect(wrap.props.style.transition).toBe('none')
 
-    // TODO Assert hidden
+    cmpt.setProps({ percent: 99 })
+    wrap = cmpt.get(0)
+    expect(visible).toBe(true)
+    expect(wrap.props.style.opacity).toBe(1)
+    expect(wrap.props.style.hasOwnProperty('transition')).toBeFalsy()
+
+    cmpt.setProps({ percent: 100 })
+    wrap = cmpt.get(0)
+    expect(visible).toBe(false)
+    expect(wrap.props.style.opacity).toBe(0)
 })

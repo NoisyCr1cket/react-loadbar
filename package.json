@@ -23,6 +23,7 @@
     "react": ">=15"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>jestSetup.js",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
@@ -41,7 +42,7 @@
     "dist": "yarn clean && yarn build",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
-    "test": "yarn build && jest test",
+    "test": "jest test --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -63,6 +64,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.14.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.5.1",
