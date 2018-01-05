@@ -35,11 +35,9 @@ jobs:
 
       # lint
       - run: yarn lintAll
-        
-      # run tests!
-      - run: yarn test
-
       # webpack
       - run: yarn build
+      # run tests!
+      - run: yarn test
 
 
