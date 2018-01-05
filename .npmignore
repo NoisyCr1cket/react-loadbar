@@ -21,3 +21,7 @@ yarn.lock
 .storybook
 .out
 .circleci
+codecov
+jestSetup.js
+.circleci
+__tests__

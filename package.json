@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": false,
   "author": "John Bernardo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noisycr1cket/react-loadbar"
+  },
   "license": "MIT",
   "keywords": [
+    "progress",
+    "loading",
     "react",
     "loader",
-    "loading",
     "bar",
     "spinner",
     "bootstrap",
