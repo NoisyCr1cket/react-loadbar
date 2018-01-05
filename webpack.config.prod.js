@@ -64,6 +64,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
         new CheckerPlugin(),
         new ExtractTextPlugin('styles.css'),
         new webpack.optimize.UglifyJsPlugin({

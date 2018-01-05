@@ -47,7 +47,7 @@
     "build": "webpack --config webpack.config.prod.js",
     "test": "jest test --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook -c .storybook -o .out"
   },
   "devDependencies": {
     "@baristalabs/react-scripts-ts": "2.9.5",
