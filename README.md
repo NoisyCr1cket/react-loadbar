@@ -1,5 +1,7 @@
 # react-loadbar
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/noisycr1cket/react-loadbar.svg)](https://greenkeeper.io/)
+
 ![](https://img.shields.io/circleci/project/github/noisycr1cket/react-loadbar.svg)
 ![](https://img.shields.io/codecov/c/github/noisycr1cket/react-loadbar.svg)
 
