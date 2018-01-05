@@ -51,14 +51,16 @@ class MyCmpt extends React.Component {
 ```
 
 ## `LoadBar`
+
 A simple, dumb component which simply displays the loading `percent` you provide to it.
-| Prop  | Default  | Type | Optional | Description |
-| ------------- |-----------------| -----------------| -------| ------|
-| `percent` | `1` | `number` | No | Determines the width of the loading bar |
-| `onVisibilityChange` | `undefined` | `(boolean) => void` | Yes | Callback which receives `true` when the loading bar goes from hidden -> visible, and `false` when it goes from visible -> hidden |
-| `barStyle` | `{}` | `Object` | Yes | Style properties applied directly on the loading bar |
-| `showSpinner` | `true` | `boolean` | Yes | Visibility of the spinner |
-| `spinnerStyle` | `{}` | `Object` | Yes | Style properties applied directly on the spinner element  |
+
+Prop  | Default  | Type | Optional | Description
+------|----------|------|----------|------------
+`percent` | `1` | `number` | No | Determines the width of the loading bar
+`onVisibilityChange` | `undefined` | `(boolean) => void` | Yes | Callback which receives `true` when the loading bar goes from hidden -> visible, and `false` when it goes from visible -> hidden
+`barStyle` | `{}` | `Object` | Yes | Style properties applied directly on the loading bar
+`showSpinner` | `true` | `boolean` | Yes | Visibility of the spinner
+`spinnerStyle` | `{}` | `Object` | Yes | Style properties applied directly on the spinner element
 
 ```javascript
 import 'react-loadbar/dist/styles.css'
@@ -100,13 +102,15 @@ class MyCmpt extends React.Component {
 ```
 
 ## `SimulatedLoadBar`
+
 A loading bar component based on `LoadBar` which simulates loading. **Inherits the same set of props from `LoadBar`, but ignores the `percent` property**. The `SimulatedLoadBar` controls the value of the `percent` prop internally.
-| Prop  | Default  | Type | Optional | Description |
-| --------------|-----------------| -----------------| -------| ------|
-| `onPercentChange` | `undefined` | `(number) => void` | Yes | Invoked at every tick of the simulated load when the internal value of `percent` changes |
-| `timeMs` | `8000` | `number` | Yes | Number of milliseconds it takes for the loading bar to reach 95%, at which point the bar animation stops indefinitely until the user sets `isLoading` to `false` |
-| `numTicks` | `16` | `number` | Yes | Number of ticks it takes for the internal `percent` value to reach 95%. This number is distributed evenly over the given `timeMs` so the time between each tick is roughly `timeMs ÷ numTicks` |
-| `isLoading` | `true` | `boolean` | Yes | If set to `true`, the loading simulation and animation will begin immediately. If set to `false`, the animation will fast forward to 100% and transition to being hidden. |
+
+Prop  | Default  | Type | Optional | Description
+--------------|-----------------| -----------------| -------| ------
+`onPercentChange` | `undefined` | `(number) => void` | Yes | Invoked at every tick of the simulated load when the internal value of `percent` changes
+`timeMs` | `8000` | `number` | Yes | Number of milliseconds it takes for the loading bar to reach 95%, at which point the bar animation stops indefinitely until the user sets `isLoading` to `false`
+`numTicks` | `16` | `number` | Yes | Number of ticks it takes for the internal `percent` value to reach 95%. This number is distributed evenly over the given `timeMs` so the time between each tick is roughly `timeMs ÷ numTicks`
+`isLoading` | `true` | `boolean` | Yes | If set to `true`, the loading simulation and animation will begin immediately. If set to `false`, the animation will fast forward to 100% and transition to being hidden
 
 ## Styling
 All elements are easily targettable with CSS. To view the classes and base styles, see the [source .scss file](#).
