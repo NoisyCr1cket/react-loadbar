@@ -44,8 +44,7 @@
     "dist": "yarn clean && yarn build",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
-    "test": "jest test --coverage",
-    "testCI": "jest test --coverage --coverageDirectory $CIRCLE_ARTIFACTS",
+    "test": "jest test --coverage --coverageDirectory .coverage/",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -c .storybook -o .out"
   },
@@ -66,6 +65,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "codecov": "^3.0.0",
     "css-loader": "^0.28.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

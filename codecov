@@ -1,0 +1,2 @@
+#!/bin/bash
+yarn codecov --token=f100fd00-5eb6-4001-948d-d2a5065ca303

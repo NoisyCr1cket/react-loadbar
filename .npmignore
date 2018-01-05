@@ -1,6 +1,6 @@
 src/
 stories/
-/coverage
+.coverage/
 /build
 .DS_Store
 .env.local

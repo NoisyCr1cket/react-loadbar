@@ -3,10 +3,6 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-general:
-  artifacts:
-    - "coverage"
-
 jobs:
   build:
     docker:
@@ -41,7 +37,10 @@ jobs:
       - run: yarn lintAll
       # webpack
       - run: yarn build
-      # run tests!
-      - run: yarn testCI
+      # test
+      - run: yarn test
+
+    post:
+      - ./codecov
 
 
