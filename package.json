@@ -45,6 +45,7 @@
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
     "test": "jest test --coverage",
+    "testCI": "jest test --coverage --coverageDirectory $CIRCLE_ARTIFACTS",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -c .storybook -o .out"
   },
