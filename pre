@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-yarn lintAll && yarn build && yarn test
+yarn lintAll && yarn buildCI && yarn test

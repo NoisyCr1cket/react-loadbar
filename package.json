@@ -1,6 +1,6 @@
 {
   "name": "react-loadbar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "author": "John Bernardo",
   "repository": {
@@ -43,12 +43,13 @@
     ]
   },
   "scripts": {
-    "precommit": "./pre",
+    "prepush": "./pre",
     "lintAll": "yarn tslint . && yarn eslint .",
     "clean": "rm -rf build dist",
     "dist": "yarn clean && yarn build",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
+    "buildCI": "IS_CI=true webpack --config webpack.config.prod.js",
     "test": "jest test --coverage --coverageDirectory .coverage/",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -c .storybook -o .out"

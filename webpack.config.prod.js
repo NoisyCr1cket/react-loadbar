@@ -5,6 +5,25 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const DIST = 'dist'
 
+const uglify = new webpack.optimize.UglifyJsPlugin({
+    ecma: 5,
+    sourceMap: false
+})
+
+const plugins = [
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
+        }
+    }),
+    new CheckerPlugin(),
+    new ExtractTextPlugin('styles.css'),
+]
+
+if (!process.env['IS_CI']) {
+    plugins.push(uglify)
+}
+
 // TODO Needs consolidating -- mostly identical to dev conf
 module.exports = {
     entry: './src/index.tsx',
@@ -63,18 +82,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        }),
-        new CheckerPlugin(),
-        new ExtractTextPlugin('styles.css'),
-        new webpack.optimize.UglifyJsPlugin({
-            ecma: 5,
-            sourceMap: false
-        })
-    ]
+
+    plugins
 }
 
