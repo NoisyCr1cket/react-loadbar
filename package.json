@@ -39,7 +39,6 @@
   },
   "scripts": {
     "precommit": "./pre",
-    "prepush": "./pre",
     "lintAll": "yarn tslint . && yarn eslint .",
     "clean": "rm -rf build dist",
     "dist": "yarn clean && yarn build",

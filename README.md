@@ -113,7 +113,7 @@ Prop  | Default  | Type | Optional | Description
 `isLoading` | `true` | `boolean` | Yes | If set to `true`, the loading simulation and animation will begin immediately. If set to `false`, the animation will fast forward to 100% and transition to being hidden
 
 ## Styling
-All elements are easily targettable with CSS. To view the classes and base styles, see the [source .scss file](#).
+All elements are easily targettable with CSS. To view the classes and base styles, see the [source .scss file](https://github.com/noisycr1cket/react-loadbar/blob/master/src/styles.scss).
 
 ## License
 
