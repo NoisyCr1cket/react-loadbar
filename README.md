@@ -1,7 +1,7 @@
 # react-loadbar
 
-[![npm](https://img.shields.io/npm/dm/react-loadbar.svg?maxAge=2592000)]()
 ![](https://img.shields.io/circleci/project/github/noisycr1cket/react-loadbar.svg)
+![](https://img.shields.io/coveralls/github/noisycr1cket/react-loadbar.svg)
 
 A super simple and minimal progress bar with optional spinner.
 
