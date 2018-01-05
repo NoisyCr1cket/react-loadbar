@@ -39,8 +39,5 @@ jobs:
       - run: yarn build
       # test
       - run: yarn test
-
-    post:
-      - ./codecov
-
-
+      # Upload to code cov
+      - run: ./codecov
