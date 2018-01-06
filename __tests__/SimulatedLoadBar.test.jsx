@@ -89,8 +89,9 @@ test('SimulatedLoadBar onPercentChange no longer called after isLoading set to f
     let capturedCount = 0
     let lastPercent = 0
     const waitMs = 250
+    // Record: the last value passed to this function and the number of times it is invoked
     const onPercentChange = pct => { lastPercent = pct; ++count }
-    const wrapper = mount(<SimulatedLoadBar numTicks={80} onPercentChange={onPercentChange} />)
+    const wrapper = mount(<SimulatedLoadBar timeMs={8000} numTicks={80} onPercentChange={onPercentChange} />)
 
     return new Promise(resolve => {
         setTimeout(() => {
@@ -125,7 +126,7 @@ test('SimulatedLoadBar onPercentChange no longer called after unmounting', () =>
     let capturedCount = 0
     const waitMs = 250
     const onPercentChange = () => ++count
-    const wrapper = mount(<SimulatedLoadBar numTicks={80} onPercentChange={onPercentChange} />)
+    const wrapper = mount(<SimulatedLoadBar timeMs={8000} numTicks={80} onPercentChange={onPercentChange} />)
 
     return new Promise(resolve => {
         setTimeout(() => {

@@ -50,7 +50,7 @@
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
     "buildCI": "IS_CI=true webpack --config webpack.config.prod.js",
-    "test": "jest test --coverage --coverageDirectory .coverage/",
+    "test": "jest test --no-watchman --onlyChanged --coverage --coverageDirectory .coverage/",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -c .storybook -o .out"
   },
