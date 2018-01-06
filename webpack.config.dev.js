@@ -3,13 +3,13 @@ const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
     entry: './src/index.tsx',
+    devtool: 'source-map',
     output: {
         filename: 'index.js',
         path: path.join(__dirname, 'dist'),
         library: 'ReactLoadBar',
         libraryTarget: 'umd'
     },
-    devtool: 'source-map',
     resolve: {
         extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
     },

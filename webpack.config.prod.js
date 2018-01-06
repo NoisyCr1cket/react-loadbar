@@ -7,7 +7,7 @@ const DIST = 'dist'
 
 const uglify = new webpack.optimize.UglifyJsPlugin({
     ecma: 5,
-    sourceMap: false
+    sourceMap: true
 })
 
 const plugins = [
@@ -27,6 +27,7 @@ if (!process.env['IS_CI']) {
 // TODO Needs consolidating -- mostly identical to dev conf
 module.exports = {
     entry: './src/index.tsx',
+    devtool: 'cheap-module-source-map',
     output: {
         filename: 'index.js',
         path: path.join(__dirname, DIST),
