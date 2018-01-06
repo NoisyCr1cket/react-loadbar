@@ -262,8 +262,8 @@ var defaultProps = {
     onPercentChange: function () {
         return;
     },
-    timeMs: 8000,
-    numTicks: 16,
+    timeMs: 4000,
+    numTicks: 40,
     isLoading: true
 };
 var SimulatedLoadBar = (function (_super) {
@@ -301,7 +301,7 @@ var SimulatedLoadBar = (function (_super) {
                     clearInterval(_this._timeout);
                 }
             };
-            this._timeout = window.setInterval(cb, this.state.tickIntervalMs);
+            this._timeout = setInterval(cb, this.state.tickIntervalMs);
         }
         else if (!isLoading && this.state.isLoading) {
             this.setState({ percent: 100, isLoading: isLoading }, function () {

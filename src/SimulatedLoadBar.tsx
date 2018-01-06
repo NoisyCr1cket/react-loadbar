@@ -18,15 +18,15 @@ const defaultProps = {
         return
     },
 
-    timeMs: 8000,
-    numTicks: 16,
+    timeMs: 4000,
+    numTicks: 40,
     isLoading: true
 }
 
 export class SimulatedLoadBar extends
     React.Component<Readonly<Props>, Readonly<State>> {
 
-    _timeout = 0
+    _timeout: any = 0
 
     constructor(props: Props) {
         super(props)
@@ -66,7 +66,7 @@ export class SimulatedLoadBar extends
                 }
             }
 
-            this._timeout = window.setInterval(cb, this.state.tickIntervalMs)
+            this._timeout = setInterval(cb, this.state.tickIntervalMs)
         } else if (!isLoading && this.state.isLoading) {
             // Finish up
             this.setState({ percent: 100, isLoading }, () => {
