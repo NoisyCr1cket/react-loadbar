@@ -61,7 +61,7 @@
     "@storybook/addons": "^3.3.3",
     "@storybook/react": "^3.3.3",
     "@types/enzyme": "^3.1.6",
-    "@types/jest": "^22.0.0",
+    "@types/jest": "^23.1.5",
     "@types/react": "^16.0.31",
     "@types/storybook__react": "^3.0.5",
     "autoprefixer": "^8.0.0",
