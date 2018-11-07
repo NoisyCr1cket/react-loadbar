@@ -25,7 +25,7 @@
     "dist/"
   ],
   "dependencies": {
-    "react": ">=15"
+    "react": ">=16.6.1"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>jestSetup.js",
