@@ -57,7 +57,7 @@
   "devDependencies": {
     "@baristalabs/react-scripts-ts": "2.9.5",
     "@storybook/addon-actions": "^5.1.6",
-    "@storybook/addon-links": "^3.3.3",
+    "@storybook/addon-links": "^5.1.6",
     "@storybook/addons": "^3.3.3",
     "@storybook/react": "^3.3.3",
     "@types/enzyme": "^3.1.6",
